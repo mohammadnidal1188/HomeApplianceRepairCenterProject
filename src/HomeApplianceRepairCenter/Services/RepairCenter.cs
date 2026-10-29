@@ -78,7 +78,7 @@ public class RepairCenter
     /// <summary>Total cost of the appliances that are in the given status.</summary>
     public decimal CalculateTotalCost(RepairStatus status) => SumCosts(GetByStatus(status));
 
-    // This works via polymorphism because each specific appliance class overrides the abstract GetStatusSummary method.
+    // polymorphism : each appliance type overrides the virtual GetStatusSummary method.
     /// <summary>Prints the summary line of every appliance.</summary>
     public void DisplayAllStatuses()
     {
@@ -90,7 +90,7 @@ public class RepairCenter
         }
     }
 
-    // This triggers the DeliveryOverdue event, raised by the system when a repair exceeds its scheduled time frame.
+    // Appliance raises DeliveryOverdue in CheckDeliveryDeadline(); this method counts the late ones.
     /// <summary>Checks every open repair against its promised date; late ones raise their event.</summary>
     /// <returns>Number of late appliances.</returns>
     public int CheckOverdueAppliances(DateTime today)
