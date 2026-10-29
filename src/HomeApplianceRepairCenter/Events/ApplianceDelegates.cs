@@ -4,7 +4,7 @@ using HomeApplianceRepairCenter.Models;
 namespace HomeApplianceRepairCenter.Events;
 
 // A delegate is a type that references a method with a specific parameter list and return type.
-// The StatusChanged event in Models/Appliance.cs uses this delegate, and it is raised inside the RepairStatus property setter.
+// Used by Appliance.StatusChanged, which is raised in ChangeStatus() on every status change.
 /// <summary>
 /// Signature of the handlers notified when an appliance changes its repair status.
 /// </summary>
