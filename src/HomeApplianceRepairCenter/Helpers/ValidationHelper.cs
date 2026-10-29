@@ -16,7 +16,7 @@ public static class ValidationHelper
     // The pattern requires 3 uppercase letters, a dash, and 6 digits. Valid: AAA-123456, Invalid: aa-123.
     private static readonly Regex SerialNumberPattern = new(@"^[A-Z]{3}-[0-9]{6}\z", RegexOptions.Compiled);
 
-    // This method is called in Models/Appliance.cs inside the SerialNumber property setter to validate the format.
+     // Called in the Appliance constructor to check the serial number format before creating the object.
     /// <summary>Checks the serial number format (AAA-123456).</summary>
     public static bool IsValidSerialNumber(string? serialNumber)
         => !string.IsNullOrWhiteSpace(serialNumber) && SerialNumberPattern.IsMatch(serialNumber);
@@ -26,7 +26,7 @@ public static class ValidationHelper
     public static bool IsValidText(string? text, int minLength = 2)
         => !string.IsNullOrWhiteSpace(text) && text.Trim().Length >= minLength;
 
-    // Properties like Cost and RepairDuration use this method because financial and time costs cannot physically be negative values.
+    // Used by PartsCost and LaborHours in Appliance, because a cost or a duration cannot be negative.
     /// <summary>Checks that a cost or a duration is not negative.</summary>
     public static bool IsNonNegative(decimal value) => value >= 0m;
 
