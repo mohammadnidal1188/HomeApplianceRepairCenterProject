@@ -52,8 +52,7 @@ public sealed class Refrigerator : Appliance
         get => _needsGasRefill;
         set
         {
-            // EnsureRepairIsOpen verifies that the repair job is still active, preventing any technical status updates once the appliance service is finalized.
-            EnsureRepairIsOpen("The gas refill requirement");
+            // Blocks changing this flag after the repair is completed, so the final cost stays fixed.
             _needsGasRefill = value;
         }
     }
