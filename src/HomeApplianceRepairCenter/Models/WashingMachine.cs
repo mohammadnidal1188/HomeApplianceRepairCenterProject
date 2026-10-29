@@ -7,7 +7,7 @@ namespace HomeApplianceRepairCenter.Models;
 /// </summary>
 public sealed class WashingMachine : Appliance
 {
-    // The labor rate is lower because washing machine repairs are generally less complex than refrigerators, and it is const because it remains fixed.
+    // labor rate per hour for washing machines , const because it is fixed at compile time.
     private const decimal LaborRatePerHour = 10m;
     private const decimal FrontLoadSurcharge = 15m;   // front-load models need a longer disassembly
     private const decimal DrumReplacementFee = 60m;
@@ -51,8 +51,7 @@ public sealed class WashingMachine : Appliance
         get => _needsDrumReplacement;
         set
         {
-            // EnsureRepairIsOpen checks if the repair job is active, blocking any hardware component updates once the service is officially completed.
-            EnsureRepairIsOpen("The drum replacement requirement");
+            // Blocks changing this flag after the repair is completed, so the final cost stays fixed.
             _needsDrumReplacement = value;
         }
     }
