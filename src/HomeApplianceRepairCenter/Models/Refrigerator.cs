@@ -50,9 +50,10 @@ public sealed class Refrigerator : Appliance
     public bool NeedsGasRefill
     {
         get => _needsGasRefill;
-        set
+          set
         {
             // Blocks changing this flag after the repair is completed, so the final cost stays fixed.
+            EnsureRepairIsOpen("The gas refill requirement");
             _needsGasRefill = value;
         }
     }
