@@ -52,6 +52,7 @@ public sealed class WashingMachine : Appliance
         set
         {
             // Blocks changing this flag after the repair is completed, so the final cost stays fixed.
+            EnsureRepairIsOpen("The drum replacement requirement");
             _needsDrumReplacement = value;
         }
     }
